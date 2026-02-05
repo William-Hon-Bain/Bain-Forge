@@ -13,7 +13,7 @@ interface OfficeCardProps {
 export default function OfficeCard({ name, isActive, style }: OfficeCardProps) {
   const content = (
     <div
-      className="absolute top-1/2 left-1/2 transition-all duration-700 ease-out"
+      className="absolute top-1/2 left-1/2 transition-all duration-700 ease-out pointer-events-none"
       style={{
         transform: `translate(-50%, -50%) ${style.transform}`,
         opacity: style.opacity,
@@ -21,6 +21,7 @@ export default function OfficeCard({ name, isActive, style }: OfficeCardProps) {
         transformStyle: 'preserve-3d',
         width: '550px',
         height: '500px',
+        pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
       <div

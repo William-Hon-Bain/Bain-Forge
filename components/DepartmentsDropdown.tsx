@@ -32,12 +32,15 @@ export default function DepartmentsDropdown() {
             </button>
 
             {isOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 bg-[#1a1a1a] border border-gray-800 rounded-lg shadow-xl z-50 overflow-hidden">
-                    {departments.map((dept) => (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-[#1a1a1a] border-2 border-gray-800 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] z-50 overflow-hidden animate-in fade-in slide-in-from-bottom-4" style={{animationDuration: '200ms'}}>
+                    {departments.map((dept, idx) => (
                         <div
                             key={dept}
                             onClick={() => handleDepartmentClick(dept)}
-                            className="px-4 py-3 text-gray-300 hover:bg-red-600/10 hover:text-white cursor-pointer transition-colors border-b border-gray-800 last:border-none"
+                            className="px-5 py-3.5 text-gray-300 hover:bg-red-600/20 hover:text-white cursor-pointer transition-all duration-200 border-b border-gray-800 last:border-none font-medium hover:pl-6"
+                            style={{
+                                animationDelay: `${idx * 30}ms`
+                            }}
                         >
                             {dept}
                         </div>

@@ -94,9 +94,6 @@ export default function OfficeCarousel() {
             const style = getCardStyle(index);
             const isActive = index === activeIndex;
 
-            // ONLY render active card and immediate neighbors (offset -1, 0, 1)
-            if (Math.abs(offset) > 1 || !style.visible) return null;
-
             return (
               <OfficeCard
                 key={office.id}

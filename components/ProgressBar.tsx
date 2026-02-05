@@ -88,13 +88,14 @@ export default function ProgressBar() {
             </div>
 
             {/* Bar Track */}
-            <div className="h-6 bg-gray-900 rounded-full overflow-hidden relative shadow-inner border border-gray-800">
+            <div className="h-7 bg-gray-900/80 rounded-full overflow-hidden relative shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] border-2 border-gray-800/50 backdrop-blur-sm">
                 {/* Progress Fill */}
                 <div
-                    className="h-full bg-gradient-to-r from-red-700 via-red-600 to-red-500 rounded-full relative transition-all duration-1000 ease-out shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+                    className="h-full bg-gradient-to-r from-red-700 via-red-600 to-red-500 rounded-full relative transition-all duration-1000 ease-out shadow-[0_0_25px_rgba(220,38,38,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)]"
                     style={{ width: `${percentage}%` }}
                 >
-
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full" />
                 </div>
             </div>
 

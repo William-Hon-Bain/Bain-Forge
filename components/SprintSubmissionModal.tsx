@@ -62,7 +62,7 @@ export default function SprintSubmissionModal() {
             />
 
             {/* Modal Content */}
-            <div className="relative w-full max-w-lg bg-[#1a1a1a] rounded-2xl border border-gray-800 shadow-2xl overflow-hidden transform transition-all">
+            <div className="relative w-full max-w-lg bg-[#1a1a1a] rounded-2xl border-2 border-gray-800 shadow-[0_25px_50px_rgba(0,0,0,0.8),0_0_100px_rgba(220,38,38,0.2)] overflow-hidden transform transition-all animate-in zoom-in fade-in" style={{animationDuration: '300ms'}}>
                 {/* Header */}
                 <div className="px-6 py-4 border-b border-gray-800 flex justify-between items-center bg-[#222]">
                     <div className="flex flex-col">
