@@ -13,7 +13,7 @@ interface OfficeCardProps {
 export default function OfficeCard({ name, isActive, style }: OfficeCardProps) {
   const content = (
     <div
-      className="absolute top-1/2 left-1/2 transition-all duration-700 ease-out pointer-events-none"
+      className="absolute top-1/2 left-1/2 pointer-events-none"
       style={{
         transform: `translate(-50%, -50%) ${style.transform}`,
         opacity: style.opacity,
@@ -22,6 +22,7 @@ export default function OfficeCard({ name, isActive, style }: OfficeCardProps) {
         width: '550px',
         height: '500px',
         pointerEvents: isActive ? 'auto' : 'none',
+        transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease-out', // Smooth Apple-like easing
       }}
     >
       <div

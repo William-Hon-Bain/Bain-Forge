@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   description: "Bain Forge - Office Selector",
 };
 
+import { OfficeProvider } from '@/contexts/OfficeContext';
+
+// ... (Metadata stays same)
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <OfficeProvider>
+          {children}
+        </OfficeProvider>
       </body>
     </html>
   );

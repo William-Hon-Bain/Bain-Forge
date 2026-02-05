@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export interface Office {
     name: string;
@@ -25,14 +25,23 @@ interface OfficeContextType {
 const OfficeContext = createContext<OfficeContextType | undefined>(undefined);
 
 export function OfficeProvider({ children, initialOfficeName = 'San Francisco' }: { children: ReactNode, initialOfficeName?: string }) {
-    // Mock Data for all offices
+    // Mock Data for all offices 
+    // Initialize with 0 to match server-side rendering (avoids hydration error)
     const [offices, setOffices] = useState<Office[]>([
-        { name: 'San Francisco', progress: 7500, target: 10000 },
-        { name: 'New York', progress: 4200, target: 10000 },
-        { name: 'Chicago', progress: 8900, target: 10000 },
-        { name: 'London', progress: 3000, target: 10000 },
-        { name: 'Tokyo', progress: 6100, target: 10000 },
+        { name: 'San Francisco', progress: 0, target: 10000 },
+        { name: 'New York', progress: 0, target: 10000 },
+        { name: 'Chicago', progress: 0, target: 10000 },
+        { name: 'London', progress: 0, target: 10000 },
+        { name: 'Tokyo', progress: 0, target: 10000 },
     ]);
+
+    // Randomize progress only on the client side after mount
+    useEffect(() => {
+        setOffices(prev => prev.map(office => ({
+            ...office,
+            progress: Math.floor(Math.random() * 10000)
+        })));
+    }, []);
 
     const [currentOfficeName, setCurrentOfficeNameState] = useState(initialOfficeName);
     const [isModalOpen, setIsModalOpen] = useState(false);

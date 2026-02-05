@@ -11,12 +11,15 @@ interface OfficePageProps {
   }>;
 }
 
+import OfficeSynchronizer from '@/components/OfficeSynchronizer';
+
 export default async function OfficePage({ params }: OfficePageProps) {
   const { location } = await params;
   const locationName = decodeURIComponent(location);
 
   return (
-    <OfficeProvider initialOfficeName={locationName}>
+    <>
+      <OfficeSynchronizer name={locationName} />
       <div className="relative h-screen bg-[#0B0B0B] flex flex-col overflow-hidden">
         {/* Top 10% - Office Title & Dropdown */}
         <div className="h-[10vh] flex items-center justify-center border-b border-white/5 bg-[#0B0B0B] z-10 relative px-8">
@@ -61,6 +64,6 @@ export default async function OfficePage({ params }: OfficePageProps) {
         {/* Modals */}
         <SprintSubmissionModal />
       </div>
-    </OfficeProvider>
+    </>
   );
 }

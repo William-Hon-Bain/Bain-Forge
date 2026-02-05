@@ -30,16 +30,6 @@ export default function OfficeCarousel() {
   const getCardStyle = (index: number) => {
     const offset = index - activeIndex;
 
-    // Only render exactly 3 cards: active and one on each side
-    if (Math.abs(offset) > 1) {
-      return {
-        transform: '',
-        opacity: 0,
-        zIndex: -999,
-        visible: false,
-      };
-    }
-
     // Ring configuration
     const ANGLE_STEP = 35; // degrees between each card
     const RADIUS = 950; // radius of the ring
@@ -57,7 +47,9 @@ export default function OfficeCarousel() {
     scale = Math.max(scale, 0.45); // minimum scale
 
     // Opacity based on distance
-    const opacity = offset === 0 ? 1 : 0.7;
+    // Show active + 1 neighbors fully/semi-transparent. Hide others smoothly.
+    const isVisible = Math.abs(offset) <= 1;
+    const opacity = offset === 0 ? 1 : (isVisible ? 0.7 : 0);
 
     // Z-index: active card always on top
     const zIndex = offset === 0 ? 1000 : Math.round(z * -1);
@@ -66,7 +58,9 @@ export default function OfficeCarousel() {
       transform: `translateX(${x}px) translateZ(${z}px) rotateY(${-angle}deg) scale(${scale})`,
       opacity: opacity,
       zIndex: zIndex,
-      visible: true,
+      // Only set visibility/display if you want to remove them from flow, 
+      // but simpler is to just let opacity handle the visual hiding + pointer events
+      pointerEvents: isVisible ? 'auto' : 'none',
     };
   };
 
